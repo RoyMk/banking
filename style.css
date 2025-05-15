@@ -50,12 +50,14 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
     --default-subtitle-font-size: 0.95rem;
 
     --action-buttons-bg-color: gray;
-    --header-bg-color: #2196f3;
+    --header-bg-color: #35618e;
     --icon-colors: white;
 
     --quick-links-gap: 5px;
     --section-split-card-bg-color: #ffffff;
     --expander-identifier-color: black;
+
+    --global-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
 }
 
 
@@ -100,9 +102,10 @@ section { height: 100vh; }
     display: flex;
     border-radius: 10px;
     gap: var(--quick-links-gap);
-    background-color: #4293e8;
+    background-color: #ffffff;
     justify-content: space-evenly;
     padding: 8px;
+
 }
 .default-buttons-style, .quick-links button {
     color: black;
@@ -110,6 +113,7 @@ section { height: 100vh; }
     border: none;
     padding: 10px;
     border-radius: 10px;
+    box-shadow: var(--global-box-shadow);
 }
 .action-buttons {
     margin-top: var(--default-header-padding);
