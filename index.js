@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', locales => {
 
    expanderTrigger.addEventListener('click', () => {
        expander.classList.toggle('expanded');
-       expanderIdentifier.classList.toggle('expander-open');
+       expanderIdentifier.classList.toggle('expander-arrow-identifier-open');
    })
 
 
