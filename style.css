@@ -1,0 +1,224 @@
+/* ===========================
+   1. Global Resets & Base Styles
+   =========================== */
+
+/* Box-sizing and margin reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+/* Motion preferences */
+@media (prefers-reduced-motion: no-preference) {
+    html { interpolate-size: allow-keywords; }
+}
+
+/* Body base styles */
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Lato", sans-serif, Arial;
+    background-color: #f8f6f6;
+}
+
+/* Media defaults */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Font inheritance for form controls */
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* Text overflow and wrapping */
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+p { text-wrap: pretty; }
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+
+/* Root stacking context */
+#root, #__next { isolation: isolate; }
+
+
+/* ===========================
+   2. CSS Variables
+   =========================== */
+:root {
+    --default-header-padding: 10px;
+    --default-header-icons-size: 25px;
+    --default-margin-top: 10px;
+    --section-split-border-radius: 10px;
+    --default-subtitle-font-size: 0.95rem;
+
+    --action-buttons-bg-color: gray;
+    --header-bg-color: #2196f3;
+    --icon-colors: white;
+
+    --quick-links-gap: 5px;
+    --section-split-card-bg-color: #ffffff;
+    --expander-identifier-color: black;
+}
+
+
+/* ===========================
+   3. Header Styles
+   =========================== */
+header {
+    background-color: var(--header-bg-color);
+    padding: var(--default-header-padding);
+}
+.header-data-container {
+    display: flex;
+    justify-content: space-between;
+}
+.ph {
+    font-size: var(--default-header-icons-size);
+    color: var(--icon-colors);
+}
+
+
+/* ===========================
+   4. Section & Content Containers
+   =========================== */
+section { height: 100vh; }
+.section-content-container { padding: var(--default-header-padding); }
+.section-content-container, p, h1, h2, h3 { margin-top: var(--default-margin-top); }
+
+
+/* ===========================
+   5. Copyright
+   =========================== */
+.copyright span {
+    color: royalblue;
+    font-weight: bold;
+}
+
+
+/* ===========================
+   6. Quick Links & Buttons
+   =========================== */
+.quick-links {
+    display: flex;
+    border-radius: 10px;
+    gap: var(--quick-links-gap);
+    background-color: #4293e8;
+    justify-content: space-evenly;
+    padding: 8px;
+}
+.default-buttons-style, .quick-links button {
+    color: black;
+    background-color: whitesmoke;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+.action-buttons {
+    margin-top: var(--default-header-padding);
+    display: flex;
+    gap: var(--quick-links-gap);
+    z-index: 99;
+}
+.action-buttons button {
+    width: 100%;
+    background-color: var(--action-buttons-bg-color);
+    color: white;
+    z-index: 99;
+}
+
+
+/* ===========================
+   7. Balance & Split Cards
+   =========================== */
+.balance-container, .split {
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    background-color: var(--section-split-card-bg-color);
+    margin-top: 5%;
+    position: relative;
+    border-radius: var(--section-split-border-radius);
+}
+.balance-amount-container, .split {
+    padding: var(--default-header-padding);
+}
+#balance {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/* ===========================
+   8. Expander/Accordion
+   =========================== */
+.expander {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.1s ease, opacity 0.1s ease;
+    -webkit-transition: max-height 0.1s ease, opacity 0.1s ease;
+}
+.expanded {
+    opacity: 1;
+    max-height: 500px;
+}
+#expander-trigger {
+    padding: var(--default-header-padding);
+}
+.expander-arrow-identifier-closed {
+    position: absolute;
+    color: var(--expander-identifier-color);
+    font-size: 2rem;
+    right: 10px;
+    top: 10px;
+    transition: transform 0.3s ease;
+}
+.expander-arrow-identifier-open {
+    transform: rotate(180deg);
+}
+
+
+/* ===========================
+   9. Typography & Subtitles
+   =========================== */
+.recent-activity-subtitle, .time-date-stamp{
+    color: #726f6f;
+    font-size: var(--default-subtitle-font-size);
+    font-style: italic;
+}
+
+.time-date-stamp {
+    display: flex;
+    gap: var(--quick-links-gap);
+}
+.balance-amount-container .pending-balance {
+    color: #726f6f;
+    font-style: italic;
+}
+
+
+/* ===========================
+   10. Recent Activity & Transactions
+   =========================== */
+.recent-activity-container {
+    background-color: var(--section-split-card-bg-color);
+}
+.recent-item .title-container {
+    display: flex;
+    justify-content: space-between;
+}
+.recent-item {
+    border-bottom: 1px solid #e0dcdc;
+}
+.title-container .title {
+    font-weight: bold;
+}
+.price-negative, .price-positive {
+    color: #da1212;
+    font-weight: bold;
+}
+.price-positive {
+    color: #2b55e5;
+}
+.transaction-id { }
+.additional-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+

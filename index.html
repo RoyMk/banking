@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta content="width=device-width,initial-scale=1.0" name="viewport">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+          rel="stylesheet"
+          type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+          rel="stylesheet"
+          type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+    </style>
+</head>
+<body>
+
+<main>
+    <header>
+        <div class="header-data-container">
+            <div class="logo">
+                <i class="ph ph-question"></i>
+            </div>
+            <div class="hamburger-menu">
+                <i class="ph ph-list"></i>
+            </div>
+        </div>
+    </header>
+    <section class="section section-primary">
+        <div class="section-content-container">
+            <div class="quick-links">
+                <button>Zelle</button>
+                <button>Transfer</button>
+                <button>Account</button>
+                <button>Deposit Check</button>
+            </div>
+            <div class="balance-container split">
+                <i class="ph-fill ph-arrow-square-down expander-arrow-identifier-closed"></i>
+                <h2 id="expander-trigger">Balance</h2>
+                <div class="expander">
+                    <div class="balance-amount-container">
+                        <h2 id="balance">$15,350</h2>
+                        <p class="pending-balance">Pending: <span>$54.99</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="default-buttons-style deposit">Deposit</button>
+                <button class="default-buttons-style withdraw">Withdraw</button>
+            </div>
+            <div class="recent-activity-container split">
+                <h2>Recent Activity</h2>
+                <div class="recent-item">
+                    <div class="title-container">
+                        <p class="title">Walmart</p>
+                        <p class="price price-positive">$15.12</p>
+                    </div>
+                    <div class="additional-info">
+                        <p class="transaction-id recent-activity-subtitle">
+                            ID: 993811
+                        </p>
+                        <div class="time-date-stamp">
+                            <p class="recent-activity-subtitle date">May 10</p>
+                            <p class="recent-activity-subtitle time-stamp">4:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="title-container">
+                        <p class="title">Walmart</p>
+                        <p class="price price-positive">$15.12</p>
+                    </div>
+                    <div class="additional-info">
+                        <p class="transaction-id recent-activity-subtitle">
+                            ID: 993811
+                        </p>
+                        <div class="time-date-stamp">
+                            <p class="recent-activity-subtitle date">May 10</p>
+                            <p class="recent-activity-subtitle time-stamp">4:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="title-container">
+                        <p class="title">Walmart</p>
+                        <p class="price price-positive">$15.12</p>
+                    </div>
+                    <div class="additional-info">
+                        <p class="transaction-id recent-activity-subtitle">
+                            ID: 993811
+                        </p>
+                        <div class="time-date-stamp">
+                            <p class="recent-activity-subtitle date">May 10</p>
+                            <p class="recent-activity-subtitle time-stamp">4:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rewards">
+                <div class="cashback split">
+                    <h2>Cashback</h2>
+                    <p>Pending</p>
+                    <p>$4.26</p>
+                </div>
+
+                <div class="reward-deals split">
+                    <h2>Weekly Deals</h2>
+                    <div class="deal">
+                        <h3>Nike</h3>
+                        <p>6% Cashback</p>
+                    </div>
+                    <div class="deal">
+                        <h3>Chick-fil-A</h3>
+                        <p>8% Cashback</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="section-footer">
+
+        </div>
+
+        <template id="recent-activity-item-template">
+            <div class="recent-item">
+                <div class="title-container">
+                    <p class="title">Walmart</p>
+                    <p class="price price-positive">$15.12</p>
+                </div>
+                <div class="additional-info">
+                    <p class="transaction-id recent-activity-subtitle">
+                        ID: 993811
+                    </p>
+                    <div class="time-date-stamp">
+                        <p class="recent-activity-subtitle date">May 10</p>
+                        <p class="recent-activity-subtitle time-stamp">4:30 PM</p>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+
+    </section>
+</main>
+<script src="index.js"></script>
+</body>
+</html>
