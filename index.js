@@ -1,58 +1,115 @@
-document.addEventListener('DOMContentLoaded', locales => {
-   const expanderTrigger = document.querySelector('#expander-trigger');
-   const expander = document.querySelector('.expander');
-   const expanderIdentifier = document.querySelector('.expander-arrow-identifier-closed');
-   const recentActivityContainer = document.querySelector('.recent-activity-container');
-   const depositButton = document.querySelector('.deposit');
 
-   const templateItem = document.getElementById('recent-activity-item-template');
+class TransactionSystem{
+    constructor(transactionType) {
+        this.transactionType = transactionType;
+    }
+    
+    
+}
 
-   expanderTrigger.addEventListener('click', () => {
-       expander.classList.toggle('expanded');
-       expanderIdentifier.classList.toggle('expander-arrow-identifier-open');
-   })
+class BankApp {
+    constructor() {
+        // Element references
+        this.expanderTrigger = document.querySelector('#expander-trigger');
+        this.expander = document.querySelector('.expander');
+        this.expanderIdentifier = document.querySelector('.expander-arrow-identifier-closed');
+        this.recentActivityContainer = document.querySelector('.recent-activity-container');
+        this.depositButton = document.querySelector('.deposit');
+        this.bankBalance = document.getElementById("balance");
+        this.templateItem = document.getElementById('recent-activity-item-template');
 
+        // Time options
+        this.options = {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        };
 
+        // Bind event handlers
+        this.expanderTrigger.addEventListener('click', () => this.toggleExpander());
+        this.depositButton.addEventListener('click', () => this.addNewItem());
 
+        // Initialize balance
+        this.updateBalance("50000");
+    }
 
-    function formatCurrency(amount, currency = 'USD', locale = 'en-US') {
+    formatCurrency(amount, currency = 'USD', locale = 'en-US') {
         return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount);
     }
 
-    
+    generateRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-    function createNewItem(title,price,id,date,time){
-        const template = document.getElementById('recent-activity-item-template');
-        const clone = template.content.cloneNode(true);
+    createNewItem(title, price, id, date, time) {
+        const clone = this.templateItem.content.cloneNode(true);
         clone.querySelector(".title").textContent = `${title}`;
-        clone.querySelector(".price").textContent = `${formatCurrency(price)}`;
+        clone.querySelector(".price").textContent = this.formatCurrency(price);
         clone.querySelector(".transaction-id").textContent = `ID: ${id}`;
         clone.querySelector(".date").textContent = `${date}`;
         clone.querySelector(".time-stamp").textContent = `${time}`;
         return clone;
     }
 
-    const options = {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true  // Set to false for 24-hour format if you want
-    };
-    const item = createNewItem("Tesla","250",generateTransactionId(),"May 1",
-        new Date().toLocaleTimeString(undefined, options));
+    cleanFormatting(valueToFormat) {
+        return valueToFormat.replace(/[^0-9.-]+/g, '');
+    }
 
-    depositButton.addEventListener('click', () => {
-        recentActivityContainer.appendChild(item)
-    })
-    
-    
-    function generateTransactionId() {
-        let idRandomizer = []
+    addNewItem() {
+        const item = this.createNewItem(
+            this.generateTransactionId(),
+            this.generateRandomNumber(1, 60000).toString(),
+            this.generateTransactionId(),
+            new Date().toLocaleDateString(undefined, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            }),
+            new Date().toLocaleTimeString(undefined, this.options)
+        );
+        const price = item.querySelector(".price");
+        
+        // Determines whether the item added will be a deduction or a deposit.
+        const isDeduction = this.updateBalance(price.textContent, true);
+        if (isDeduction) {
+            price.classList.remove('price-positive');
+            price.classList.add('price-negative');
+            price.textContent = "-" + price.textContent;
+        }
+        this.recentActivityContainer.insertBefore(
+            item,
+            this.recentActivityContainer.querySelector("h2").nextElementSibling
+        );
+    }
+
+    updateBalance(amount, isDeduction = false) {
+        const balance = this.cleanFormatting(this.bankBalance.textContent);
+        if (!isDeduction) {
+            const newTotal = parseInt(balance, 10) + parseInt(this.cleanFormatting(amount), 10);
+            this.bankBalance.textContent = newTotal.toLocaleString();
+        } else {
+            const newTotalAfterDeduction = parseInt(balance, 10) - parseInt(this.cleanFormatting(amount), 10);
+            this.bankBalance.textContent = newTotalAfterDeduction.toLocaleString();
+            return isDeduction;
+        }
+    }
+
+    generateTransactionId() {
+        let idRandomizer = [];
         for (let i = 0; i < 8; i++) {
             idRandomizer.push(Math.floor(Math.random() * 9) + 1);
         }
         return idRandomizer.join('');
     }
 
-   
-   
-})
+    toggleExpander() {
+        this.expander.classList.toggle('expanded');
+        this.expanderIdentifier.classList.toggle('expander-arrow-identifier-open');
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    window.bankApp = new BankApp();
+    
+});

@@ -10,6 +10,10 @@
 @media (prefers-reduced-motion: no-preference) {
     html { interpolate-size: allow-keywords; }
 }
+* {
+    touch-action: manipulation;
+}
+
 
 /* Body base styles */
 body {
@@ -58,6 +62,8 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
     --expander-identifier-color: black;
 
     --global-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+
+    --balance-font-size: 30px;
 }
 
 
@@ -82,7 +88,7 @@ header {
    4. Section & Content Containers
    =========================== */
 section { height: 100vh; }
-.section-content-container { padding: var(--default-header-padding); }
+.section-content-container, .rewards { padding: var(--default-header-padding); }
 .section-content-container, p, h1, h2, h3 { margin-top: var(--default-margin-top); }
 
 
@@ -143,7 +149,7 @@ section { height: 100vh; }
     padding: var(--default-header-padding);
 }
 #balance {
-    font-size: 30px;
+    font-size: var(--balance-font-size);
     font-weight: bold;
 }
 
@@ -201,6 +207,8 @@ section { height: 100vh; }
    =========================== */
 .recent-activity-container {
     background-color: var(--section-split-card-bg-color);
+
+
 }
 .recent-item .title-container {
     display: flex;
@@ -216,6 +224,8 @@ section { height: 100vh; }
     color: #da1212;
     font-weight: bold;
 }
+
+
 .price-positive {
     color: #2b55e5;
 }
@@ -226,3 +236,9 @@ section { height: 100vh; }
 }
 
 
+.balance-group {
+    display: flex;
+    align-items: center;
+    font-size: var(--balance-font-size);
+    font-weight: bold;
+}
