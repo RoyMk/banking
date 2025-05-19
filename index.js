@@ -1,11 +1,27 @@
 
-class TransactionSystem{
+class TransactionSystem {
     constructor(transactionType) {
         this.transactionType = transactionType;
     }
-    
-    
+
+    processTransaction(transaction) {
+        if(this.transactionType.toLowerCase() === "deposit" ) {
+            console.log(generateRandomNumericSequence(1,10,9))
+        }
+    }
+
 }
+
+function generateRandomNumericSequence(min,max,length)
+{
+    let idRandomizer = [];
+    for (let i = 0; i < length; i++) {
+        idRandomizer.push(Math.floor(Math.random() * min) + max);
+    }
+    return idRandomizer.join('');
+}
+
+const transactionSystem = new TransactionSystem();
 
 class BankApp {
     constructor() {
