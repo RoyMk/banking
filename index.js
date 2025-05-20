@@ -1,16 +1,5 @@
 
-class TransactionSystem {
-    constructor(transactionType) {
-        this.transactionType = transactionType;
-    }
 
-    processTransaction(transaction) {
-        if(this.transactionType.toLowerCase() === "deposit" ) {
-            console.log(generateRandomNumericSequence(1,10,9))
-        }
-    }
-
-}
 
 function generateRandomNumericSequence(min,max,length)
 {
@@ -21,7 +10,6 @@ function generateRandomNumericSequence(min,max,length)
     return idRandomizer.join('');
 }
 
-const transactionSystem = new TransactionSystem();
 
 class BankApp {
     constructor() {
@@ -98,9 +86,9 @@ class BankApp {
         );
     }
 
-    updateBalance(amount, isDeduction = false) {
+    updateBalance(amount, transactionType) {
         const balance = this.cleanFormatting(this.bankBalance.textContent);
-        if (!isDeduction) {
+        if (transactionType) {
             const newTotal = parseInt(balance, 10) + parseInt(this.cleanFormatting(amount), 10);
             this.bankBalance.textContent = newTotal.toLocaleString();
         } else {
